@@ -1,3 +1,4 @@
+import Detection from 'classes/detection'
 
 import Transition from 'components/Transition'
 
@@ -10,7 +11,7 @@ class App {
         this.createContent()
         this.createPages()
         this.createTransition()
-
+        
         this.addLinkListeners()
         window.addEventListener('popstate', this.onPopState.bind(this))
 
@@ -45,7 +46,7 @@ class App {
 
             await this.transition.show()
             this.page.animateOut()
-            
+
             if (push) {
                 window.history.pushState({}, '', url)
             }
