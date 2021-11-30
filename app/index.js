@@ -43,7 +43,7 @@ class App {
         const cursor = document.querySelector('.cursor')
         if (Detection.isDesktop()) {
             const aTags = document.querySelectorAll('a')
-            document.addEventListener('mousemove', function (e) {
+            document.addEventListener('mousemove', (e) => {
                 const x = e.clientX
                 const y = e.clientY
                 cursor.style.left = x + 'px'

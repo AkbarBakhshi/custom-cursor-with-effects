@@ -1,8 +1,8 @@
 # Quick Start Guide
 
-This repo includes the code for the following youtube video where I explain how to create custom cursors for your website and add cool ransition animations as well as hover/click effects on links, pictures and videos. check out the **Strater** branch to get the starter code and **Final** branch to get the final code for the video.
+This repo includes the code for the following youtube video where I explain how to create custom cursors for your website and add cool page load animations as well as hover effects on links and videos. check out the **Strater** branch to get the starter code and **Final** branch to get the final code for the video.
 
-
+https://youtu.be/c03nwINYoYg
 
 Download or clone the project on your local drive. Open Terminal (Command prompt) and navigate to the project folder. Then run ```npm install```. You should see a new folder called **node_modules** in the project folder.
 
