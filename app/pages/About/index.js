@@ -30,7 +30,7 @@ export default class About {
 
         video.addEventListener('ended', () => {
             console.log('ended')
-            cursorText.innerHTML = 'play'
+            cursorText.innerHTML = 'Play'
         })
     }
 

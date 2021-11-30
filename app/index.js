@@ -64,8 +64,8 @@ class App {
             })
         } else {
             gsap.set(cursor, { autoAlpha: 0 })
-            // cursorinner.style.left = '50%'
-            // cursorinner.style.top = '50%'
+            cursor.style.left = '50%'
+            cursor.style.top = '50%'
         }
     }
 
@@ -74,6 +74,12 @@ class App {
     }
 
     async onLocalLinkClick({ url, push = true }) {
+        const cursor = document.querySelector('.cursor')
+        if (!Detection.isDesktop()) {
+            gsap.to(cursor, { autoAlpha: 1 })
+        }
+        cursor.classList.add('cursor__loader')
+
         const request = await window.fetch(url)
         // console.log(request)
 
@@ -103,8 +109,16 @@ class App {
             await this.page.animateIn()
 
             this.addLinkListeners()
-            this.createCursor()
+
+            //In case we navigate to another page without stopping the video in about page
             gsap.set('.cursor__text', {text: 'Play'})
+
+            if (!Detection.isDesktop()) {
+                gsap.to(cursor, { autoAlpha: 0 })
+            }
+            cursor.classList.remove('cursor__loader')
+
+            this.createCursor()
         } else {
             this.onLocalLinkClick({ url: '/' })
         }
