@@ -6,12 +6,18 @@ import Home from 'pages/Home'
 import About from 'pages/About'
 import Four04 from 'pages/Four04'
 
+import gsap from "gsap"
+import { TextPlugin } from "gsap/TextPlugin"
+
+gsap.registerPlugin(TextPlugin);
+
 class App {
     constructor() {
         this.createContent()
         this.createPages()
+        this.createCursor()
         this.createTransition()
-        
+
         this.addLinkListeners()
         window.addEventListener('popstate', this.onPopState.bind(this))
 
@@ -31,6 +37,36 @@ class App {
         this.page = this.pages[this.template]
         this.page.create()
         this.page.animateIn()
+    }
+
+    createCursor() {
+        const cursor = document.querySelector('.cursor')
+        if (Detection.isDesktop()) {
+            const aTags = document.querySelectorAll('a')
+            document.addEventListener('mousemove', function (e) {
+                const x = e.clientX
+                const y = e.clientY
+                cursor.style.left = x + 'px'
+                cursor.style.top = y + 'px'
+            })
+
+            aTags.forEach(tag => {
+                tag.addEventListener('mouseover', () => {
+                    // console.log('over')
+                    tag.classList.add('curser__hover')
+                    cursor.style.borderColor = 'white'
+                })
+                tag.addEventListener('mouseleave', () => {
+                    // console.log('out')
+                    tag.classList.remove('curser__hover')
+                    cursor.style.borderColor = ''
+                })
+            })
+        } else {
+            gsap.set(cursor, { autoAlpha: 0 })
+            // cursorinner.style.left = '50%'
+            // cursorinner.style.top = '50%'
+        }
     }
 
     createTransition() {
@@ -67,6 +103,8 @@ class App {
             await this.page.animateIn()
 
             this.addLinkListeners()
+            this.createCursor()
+            gsap.set('.cursor__text', {text: 'Play'})
         } else {
             this.onLocalLinkClick({ url: '/' })
         }

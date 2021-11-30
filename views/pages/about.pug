@@ -6,9 +6,14 @@ block variables
 block content
     .about
         h1.about__header About page
-        video.about__youtube__link(width='320' height='240' controls='')
-            source(src='https://www.w3schools.com/tags/movie.mp4' type='video/mp4')
-            |   Sorry, your browser doesn't support embedded videos.
+        if isDesktop
+            video.about__video__link(width='320' height='240')
+                source(src='https://www.w3schools.com/tags/movie.mp4' type='video/mp4')
+                |   Sorry, your browser doesn't support embedded videos.
+        else 
+            video.about__video__link(width='320' height='240' controls='')
+                source(src='https://www.w3schools.com/tags/movie.mp4' type='video/mp4')
+                |   Sorry, your browser doesn't support embedded videos.
         a.about__go__to__home__link(href='/') go back to home
         a.about__contact__email(href='mailto:akbarbakhshiwebdev@gmail.com?subject=Project Inquiry') Email me
         a.about__contact__phone(href='tel:+12152152152') Call me
